@@ -3,9 +3,10 @@ def is_valid_surname(surname):
 
 
 def is_valid_balance(balance):
-    if balance.startswith('-'):      #если ввод только полож баланс
-        return balance[1:].isdigit()      #если ввод только полож баланс
+    # if balance.startswith('-'):      #если ввод только полож баланс
+    # return balance[1:].isdigit()      #если ввод только полож баланс
     return balance.isdigit()
+
 
 def is_valid_date(date):
     if len(date) != 10 or date[2] != date[5] != '.' or not date[:2].isdigit() or not date[3:5].isdigit() or not date[
@@ -29,8 +30,18 @@ def get_user_data():
         else:
             print("Баланс должен содержать только цифры, попробуйте еще раз.")
     while True:
-
         date = input("Введите дату в формате ДД.ММ.ГГГГ: ")
+        day, month, year = date.split(".")
+        if not day.isdigit() or not month.isdigit() or not year.isdigit():
+            print("Дата должна содержать только числа, попробуйте еще раз.")
+            continue
+
+        day = int(day)
+        month = int(month)
+        if day > 31 or month > 12:
+            print("Некорректная дата, попробуйте еще раз.")
+            continue
+
         if is_valid_date(date):
             break
         else:
@@ -96,6 +107,7 @@ def main():
             break
         else:
             print("Некорректный выбор, попробуйте еще раз.")
+
 
 if __name__ == "__main__":
     main()
