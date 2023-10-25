@@ -1,5 +1,4 @@
 import string
-
 class Alphabet:
     def __init__(self, lang, letters):
         self.lang = lang
